@@ -170,7 +170,7 @@ function App() {
               </div>
             </div>
 
-            <div className="h-[50vh] min-h-[340px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md lg:h-full">
+            <div className="relative h-[50vh] min-h-[340px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md lg:h-full">
               <iframe
                 src="https://my.spline.design/cybermannequin-kU44TVJEWW94Ok5QdtDhioV2/"
                 frameBorder="0"
@@ -179,6 +179,7 @@ function App() {
                 className="w-full h-full pointer-events-auto"
                 title="Interactive 3D Mannequin"
               ></iframe>
+              <div className="absolute bottom-4 right-4 w-[152px] h-[42px] bg-[#18181b] z-10"></div>
             </div>
           </div>
         </section>
