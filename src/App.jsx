@@ -180,13 +180,13 @@ function App() {
               </div>
             </div>
 
-            <div className="relative h-[50vh] min-h-[340px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md lg:h-full">
+            <div className="relative h-[50vh] min-h-[340px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md lg:h-full pointer-events-none">
               <iframe
                 src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
                 frameBorder="0"
                 width="100%"
                 height="100%"
-                className="w-full h-full pointer-events-auto"
+                className="w-full h-full pointer-events-none"
                 title="Interactive 3D Mannequin"
               ></iframe>
               <div className="absolute bottom-6 right-4 px-4 py-2 bg-fuchsia-950/90 border border-fuchsia-500/30 rounded-full flex items-center gap-2 z-10">
