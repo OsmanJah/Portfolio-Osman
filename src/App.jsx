@@ -1,18 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
-import { AnimatePresence, LayoutGroup, motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion'
-import { Award, Download, ExternalLink, Github, X } from 'lucide-react'
+import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from 'framer-motion'
+import { Award, Download, ExternalLink, Eye, Github, X } from 'lucide-react'
 
 function App() {
   const [activeCard, setActiveCard] = useState(null)
   const [activeDocument, setActiveDocument] = useState(null)
-  const [isCursorInteractive, setIsCursorInteractive] = useState(false)
-
-  const mouseX = useMotionValue(-100)
-  const mouseY = useMotionValue(-100)
-  const smoothMouseX = useSpring(mouseX, { stiffness: 420, damping: 34, mass: 0.35 })
-  const smoothMouseY = useSpring(mouseY, { stiffness: 420, damping: 34, mass: 0.35 })
-  const cursorScale = useMotionValue(1)
-  const cursorOpacity = useMotionValue(0)
 
   const { scrollYProgress } = useScroll()
   const marqueeX = useTransform(scrollYProgress, [0.12, 0.75], ['8%', '-45%'])
@@ -39,34 +31,6 @@ function App() {
       window.removeEventListener('keydown', onKeyDown)
     }
   }, [])
-
-  useEffect(() => {
-    const onPointerMove = (event) => {
-      const targetElement = event.target instanceof Element ? event.target : null
-
-      mouseX.set(event.clientX)
-      mouseY.set(event.clientY)
-      cursorOpacity.set(1)
-
-      const interactiveTarget = targetElement?.closest('a,button,[data-cursor-target="true"]')
-      const isInteractive = Boolean(interactiveTarget)
-      setIsCursorInteractive(isInteractive)
-      cursorScale.set(isInteractive ? 1.85 : 1)
-    }
-
-    const onPointerLeave = () => {
-      cursorOpacity.set(0)
-      setIsCursorInteractive(false)
-    }
-
-    window.addEventListener('pointermove', onPointerMove)
-    window.addEventListener('pointerleave', onPointerLeave)
-
-    return () => {
-      window.removeEventListener('pointermove', onPointerMove)
-      window.removeEventListener('pointerleave', onPointerLeave)
-    }
-  }, [cursorOpacity, cursorScale, mouseX, mouseY])
 
   const projects = useMemo(
     () => [
@@ -136,15 +100,6 @@ function App() {
     <div className="relative min-h-screen overflow-x-clip bg-slate-950 text-slate-100">
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.15),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_50%_100%,rgba(168,85,247,0.14),transparent_45%)]" />
 
-      <motion.div
-        style={{ x: smoothMouseX, y: smoothMouseY, scale: cursorScale, opacity: cursorOpacity }}
-        className={`pointer-events-none fixed left-0 top-0 z-[90] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border transition-colors duration-150 ${
-          isCursorInteractive
-            ? 'border-violet-200 bg-violet-300/30 shadow-[0_0_34px_rgba(196,181,253,0.75)]'
-            : 'border-cyan-300/85 bg-cyan-300/25 shadow-[0_0_24px_rgba(34,211,238,0.55)]'
-        }`}
-      />
-
       <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-2xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#home" className="text-2xl font-semibold tracking-tight text-violet-200" data-cursor-target="true">
@@ -191,21 +146,6 @@ function App() {
                   accountability, and automation-first thinking.
                 </p>
 
-                <div className="mt-6 flex items-center gap-4">
-                  <div className="relative">
-                    <div className="absolute -inset-2 rounded-full bg-violet-500/35 blur-2xl" />
-                    <img
-                      src="/Osman_Jah_Profile.jpeg"
-                      alt="Osman Jah"
-                      className="relative h-20 w-20 rounded-full border border-white/20 object-cover object-top shadow-[0_0_42px_rgba(139,92,246,0.5)]"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-xl font-semibold text-white">Osman Jah</p>
-                    <p className="text-sm text-slate-300">Remote-Ready General VA • Tech Operations</p>
-                  </div>
-                </div>
-
                 <div className="mt-7 flex flex-wrap gap-3">
                   <a
                     href="https://github.com/OsmanJah"
@@ -251,75 +191,73 @@ function App() {
             OPERATIONS • AUTOMATION • TECH-FLUENT •
           </motion.p>
 
-          <div className="relative grid gap-6 md:grid-cols-12">
-            <article className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md md:col-span-8">
-              <h2 className="text-3xl font-bold text-white md:text-4xl">About & Skills</h2>
-              <p className="mt-4 text-lg leading-relaxed text-slate-200/90">
-                Born in Freetown, Sierra Leone, currently based in Hungary. I hold a{' '}
-                <button
-                  type="button"
-                  onClick={() =>
-                    openDocument('Bachelor Degree Certificate', '/Osman_Jah_Degree.pdf', 'Download Degree PDF')
-                  }
-                  className="font-semibold text-violet-200 underline decoration-violet-300/70 underline-offset-4"
-                  data-cursor-target="true"
-                >
-                  Bachelor of Science in Computer Science
-                </button>{' '}
-                from the University of Debrecen (graduated January 2026, classification: good). I thrive in remote environments where
-                clear communication, ownership, and technical problem-solving matter.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {[
-                  'React.js',
-                  'Node.js',
-                  'JavaScript',
-                  'Python',
-                  'MongoDB',
-                  'REST APIs',
-                  'Git & GitHub',
-                  'AI Tools & Workflow Automation',
-                  'Problem Solving',
-                  'Technical Communication',
-                ].map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-sm font-medium text-slate-100 backdrop-blur-md transition hover:border-violet-300/60 hover:bg-violet-500/20"
+          <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="flex flex-col gap-6">
+              <article className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
+                <h3 className="text-xl font-semibold text-white">Profile Snapshot</h3>
+                <div className="mt-4 space-y-2 text-slate-200/90">
+                  <p>
+                    <span className="text-slate-400">Name:</span> Osman Jah
+                  </p>
+                  <p>
+                    <span className="text-slate-400">Location:</span> Budapest, Hungary
+                  </p>
+                  <p>
+                    <span className="text-slate-400">Focus:</span> Remote Operations & VA Excellence
+                  </p>
+                </div>
+              </article>
+
+              <article className="w-full rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
+                <h2 className="text-3xl font-bold text-white md:text-4xl">About & Skills</h2>
+                <p className="mt-4 text-lg leading-relaxed text-slate-200/90">
+                  Born in Freetown, Sierra Leone, currently based in Hungary. I hold a{' '}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openDocument('Bachelor Degree Certificate', '/Osman_Jah_Degree.pdf', 'Download Degree PDF')
+                    }
+                    className="font-semibold text-violet-200 underline decoration-violet-300/70 underline-offset-4"
                     data-cursor-target="true"
                   >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </article>
+                    Bachelor of Science in Computer Science
+                  </button>{' '}
+                  from the University of Debrecen (graduated January 2026, classification: good). I thrive in remote environments where
+                  clear communication, ownership, and technical problem-solving matter.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {[
+                    'React.js',
+                    'Node.js',
+                    'JavaScript',
+                    'Python',
+                    'MongoDB',
+                    'REST APIs',
+                    'Git & GitHub',
+                    'AI Tools & Workflow Automation',
+                    'Problem Solving',
+                    'Technical Communication',
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-sm font-medium text-slate-100 backdrop-blur-md transition hover:border-violet-300/60 hover:bg-violet-500/20"
+                      data-cursor-target="true"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </div>
 
-            <article className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md md:col-span-4">
-              <h3 className="text-xl font-semibold text-white">Profile Snapshot</h3>
-              <div className="mt-4 space-y-2 text-slate-200/90">
-                <p>
-                  <span className="text-slate-400">Name:</span> Osman Jah
-                </p>
-                <p>
-                  <span className="text-slate-400">Location:</span> Hungary
-                </p>
-                <p>
-                  <span className="text-slate-400">Origin:</span> Freetown, Sierra Leone
-                </p>
-                <p>
-                  <span className="text-slate-400">Focus:</span> Remote Operations & VA Excellence
-                </p>
+            <article className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-3 backdrop-blur-md">
+              <div className="h-full min-h-[500px] overflow-hidden rounded-2xl">
+                <img
+                  src="/Osman_Jah_Profile.jpeg"
+                  alt="Osman Jah"
+                  className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                />
               </div>
-              <button
-                type="button"
-                onClick={() =>
-                  openDocument('Certifications Transcript', '/Osman_Jah_Certifications.pdf', 'Download Full Transcript')
-                }
-                className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-violet-300/60 hover:bg-violet-400/15"
-                data-cursor-target="true"
-              >
-                <Download className="h-4 w-4" />
-                Preview Transcript
-              </button>
             </article>
           </div>
         </section>
@@ -351,7 +289,20 @@ function App() {
           </section>
 
           <section id="credentials" className="mx-auto w-full max-w-7xl px-6 pb-12 pt-2">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">Certifications & Credentials</h2>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <h2 className="text-3xl font-bold text-white md:text-4xl">Certifications & Credentials</h2>
+              <button
+                type="button"
+                onClick={() =>
+                  openDocument('Certifications Transcript', '/Osman_Jah_Certifications.pdf', 'Download Full Transcript')
+                }
+                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                data-cursor-target="true"
+              >
+                <Eye className="h-4 w-4" />
+                Preview Transcript
+              </button>
+            </div>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-12">
               {certifications.map((certification, index) => (
                 <motion.button
