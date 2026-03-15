@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowUpRight, Award, Download, ExternalLink, Eye, Github, X } from 'lucide-react'
+import { ArrowUpRight, Award, Download, ExternalLink, Eye, FileText, Github, Linkedin, Mail, X } from 'lucide-react'
 
 function App() {
   const [activeCard, setActiveCard] = useState(null)
@@ -157,6 +157,16 @@ function App() {
                     <Github className="h-4 w-4" />
                     GitHub Profile
                   </a>
+                  <a
+                    href="https://www.linkedin.com/in/osman-jah-51548a344"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                    data-cursor-target="true"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    LinkedIn
+                  </a>
                   <button
                     type="button"
                     onClick={() => openDocument('Resume / CV', '/Osman_Jah_Resume.pdf', 'Download Resume/CV')}
@@ -172,16 +182,16 @@ function App() {
 
             <div className="relative h-[50vh] min-h-[340px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md lg:h-full">
               <iframe
-                src="https://my.spline.design/cybermannequin-kU44TVJEWW94Ok5QdtDhioV2/"
+                src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
                 frameBorder="0"
                 width="100%"
                 height="100%"
                 className="w-full h-full pointer-events-auto"
                 title="Interactive 3D Mannequin"
               ></iframe>
-              <div className="absolute bottom-6 right-4 px-4 py-2 bg-slate-950 border border-cyan-500/20 rounded-full flex items-center gap-2 z-10">
-                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
-                <span className="text-cyan-400 text-xs font-mono font-medium tracking-wider">
+              <div className="absolute bottom-6 right-4 px-4 py-2 bg-fuchsia-950/90 border border-fuchsia-500/30 rounded-full flex items-center gap-2 z-10">
+                <div className="w-2 h-2 rounded-full bg-fuchsia-400 animate-pulse"></div>
+                <span className="text-fuchsia-400 text-xs font-mono font-medium tracking-wider">
                   SYSTEM: ONLINE
                 </span>
               </div>
@@ -347,6 +357,28 @@ function App() {
                   </div>
                 </motion.button>
               ))}
+
+              <article className="group relative cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/30 md:col-span-12">
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/15 via-cyan-500/10 to-transparent" />
+                <div className="relative z-10">
+                  <FileText className="h-5 w-5 text-cyan-200" />
+                  <h3 className="mt-3 text-xl font-semibold leading-snug text-white">Professional Recommendation: GOAL Global</h3>
+                  <p className="mt-3 text-sm text-slate-200">
+                    Letter of recommendation highlighting data collection, work ethic, and ability to execute with zero supervision.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openDocument('Professional Recommendation: GOAL Global', '/Osman_Jah_GOAL_Recommendation.pdf', 'Download Recommendation Letter')
+                    }
+                    className="cursor-pointer mt-5 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                    data-cursor-target="true"
+                  >
+                    <Eye className="h-4 w-4" />
+                    Preview Letter
+                  </button>
+                </div>
+              </article>
             </div>
           </section>
 
@@ -442,18 +474,38 @@ function App() {
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-md md:p-12">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Let’s Work Together</h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-200/90">
-              Open to remote General VA opportunities with high-performance teams, including U.S.-focused recruiting and operations organizations.
+              Open to remote General VA and operations roles with ambitious U.S.-based teams.
             </p>
-            <a
-              href="https://github.com/OsmanJah"
-              target="_blank"
-              rel="noreferrer"
-              className="cursor-pointer mx-auto mt-6 inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-violet-400"
-              data-cursor-target="true"
-            >
-              <Github className="h-4 w-4" />
-              github.com/OsmanJah
-            </a>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="mailto:osmann5260@gmail.com"
+                className="cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                data-cursor-target="true"
+              >
+                <Mail className="h-4 w-4" />
+                Email Me
+              </a>
+              <a
+                href="https://www.linkedin.com/in/osman-jah-51548a344"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                data-cursor-target="true"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/OsmanJah"
+                target="_blank"
+                rel="noreferrer"
+                className="cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                data-cursor-target="true"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+            </div>
           </div>
         </section>
       </main>
