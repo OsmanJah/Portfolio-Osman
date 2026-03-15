@@ -179,7 +179,12 @@ function App() {
                 className="w-full h-full pointer-events-auto"
                 title="Interactive 3D Mannequin"
               ></iframe>
-              <div className="absolute bottom-4 right-4 w-[152px] h-[42px] bg-[#18181b] z-10"></div>
+              <div className="absolute bottom-6 right-4 px-4 py-2 bg-slate-950 border border-cyan-500/20 rounded-full flex items-center gap-2 z-10">
+                <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+                <span className="text-cyan-400 text-xs font-mono font-medium tracking-wider">
+                  SYSTEM: ONLINE
+                </span>
+              </div>
             </div>
           </div>
         </section>
