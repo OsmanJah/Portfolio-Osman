@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from 'framer-motion'
-import { Award, Download, ExternalLink, Eye, Github, X } from 'lucide-react'
+import { ArrowUpRight, Award, Download, ExternalLink, Eye, Github, X } from 'lucide-react'
 
 function App() {
   const [activeCard, setActiveCard] = useState(null)
@@ -102,27 +102,27 @@ function App() {
 
       <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-2xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#home" className="text-2xl font-semibold tracking-tight text-violet-200" data-cursor-target="true">
+          <a href="#home" className="cursor-pointer text-2xl font-semibold tracking-tight text-violet-200" data-cursor-target="true">
             Osman Jah
           </a>
           <ul className="hidden items-center gap-7 text-lg text-slate-300 md:flex">
             <li>
-              <a href="#about" className="transition hover:text-violet-200" data-cursor-target="true">
+              <a href="#about" className="cursor-pointer transition hover:text-violet-200" data-cursor-target="true">
                 About
               </a>
             </li>
             <li>
-              <a href="#work" className="transition hover:text-violet-200" data-cursor-target="true">
+              <a href="#work" className="cursor-pointer transition hover:text-violet-200" data-cursor-target="true">
                 Work
               </a>
             </li>
             <li>
-              <a href="#credentials" className="transition hover:text-violet-200" data-cursor-target="true">
+              <a href="#credentials" className="cursor-pointer transition hover:text-violet-200" data-cursor-target="true">
                 Credentials
               </a>
             </li>
             <li>
-              <a href="#contact" className="transition hover:text-violet-200" data-cursor-target="true">
+              <a href="#contact" className="cursor-pointer transition hover:text-violet-200" data-cursor-target="true">
                 Contact
               </a>
             </li>
@@ -151,7 +151,7 @@ function App() {
                     href="https://github.com/OsmanJah"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                    className="cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
                     data-cursor-target="true"
                   >
                     <Github className="h-4 w-4" />
@@ -160,10 +160,10 @@ function App() {
                   <button
                     type="button"
                     onClick={() => openDocument('Resume / CV', '/Osman_Jah_Resume.pdf', 'Download Resume/CV')}
-                    className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-base font-semibold text-slate-950 transition hover:bg-cyan-300"
+                    className="cursor-pointer inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-base font-semibold text-slate-950 transition hover:bg-cyan-300"
                     data-cursor-target="true"
                   >
-                    <Download className="h-4 w-4" />
+                    <Eye className="h-4 w-4" />
                     Preview Resume/CV
                   </button>
                 </div>
@@ -217,7 +217,7 @@ function App() {
                     onClick={() =>
                       openDocument('Bachelor Degree Certificate', '/Osman_Jah_Degree.pdf', 'Download Degree PDF')
                     }
-                    className="font-semibold text-violet-200 underline decoration-violet-300/70 underline-offset-4"
+                    className="cursor-pointer font-semibold text-violet-200 underline decoration-violet-300/70 underline-offset-4 transition hover:text-violet-100 hover:drop-shadow-[0_0_8px_rgba(196,181,253,0.65)]"
                     data-cursor-target="true"
                   >
                     Bachelor of Science in Computer Science
@@ -225,6 +225,17 @@ function App() {
                   from the University of Debrecen (graduated January 2026, classification: good). I thrive in remote environments where
                   clear communication, ownership, and technical problem-solving matter.
                 </p>
+                <button
+                  type="button"
+                  onClick={() =>
+                    openDocument('Bachelor Degree Certificate', '/Osman_Jah_Degree.pdf', 'Download Degree PDF')
+                  }
+                  className="cursor-pointer mt-6 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                  data-cursor-target="true"
+                >
+                  <Eye className="h-4 w-4" />
+                  Preview Degree
+                </button>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {[
                     'React.js',
@@ -271,7 +282,7 @@ function App() {
                   key={project.id}
                   layoutId={`project-card-${project.id}`}
                   onClick={() => setActiveCard({ type: 'project', id: project.id })}
-                  className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur-md transition hover:border-violet-300/55 ${
+                  className={`group relative cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/30 ${
                     index === 0 ? 'md:col-span-8 md:min-h-[18rem]' : 'md:col-span-4 md:min-h-[18rem]'
                   }`}
                   data-cursor-target="true"
@@ -282,6 +293,10 @@ function App() {
                     <h3 className="mt-3 text-2xl font-semibold text-white">{project.name}</h3>
                     <p className="mt-2 text-sm text-violet-200">{project.type}</p>
                     <p className="mt-4 text-sm leading-relaxed text-slate-100/90">{project.summary}</p>
+                    <div className="mt-6 flex items-center justify-end gap-1 text-xs text-slate-400 transition-colors group-hover:text-violet-200">
+                      <span>View Details</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </div>
                   </div>
                 </motion.button>
               ))}
@@ -296,7 +311,7 @@ function App() {
                 onClick={() =>
                   openDocument('Certifications Transcript', '/Osman_Jah_Certifications.pdf', 'Download Full Transcript')
                 }
-                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                className="cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-violet-300/60 hover:bg-violet-400/15"
                 data-cursor-target="true"
               >
                 <Eye className="h-4 w-4" />
@@ -309,7 +324,7 @@ function App() {
                   key={certification.id}
                   layoutId={`cert-card-${certification.id}`}
                   onClick={() => setActiveCard({ type: 'cert', id: certification.id })}
-                  className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur-md transition hover:border-cyan-300/55 ${
+                  className={`group relative cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/30 ${
                     index === 0 ? 'md:col-span-5' : 'md:col-span-3'
                   }`}
                   data-cursor-target="true"
@@ -319,6 +334,10 @@ function App() {
                     <Award className="h-5 w-5 text-cyan-200" />
                     <h3 className="mt-3 text-xl font-semibold leading-snug text-white">{certification.title}</h3>
                     <p className="mt-3 text-sm text-slate-200">{certification.issued}</p>
+                    <div className="mt-6 flex items-center justify-end gap-1 text-xs text-slate-400 transition-colors group-hover:text-cyan-200">
+                      <span>View Details</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </div>
                   </div>
                 </motion.button>
               ))}
@@ -344,7 +363,7 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setActiveCard(null)}
-                      className="rounded-lg border border-white/20 p-2 text-slate-200 transition hover:border-violet-300/60 hover:text-violet-100"
+                      className="cursor-pointer rounded-lg border border-white/20 p-2 text-slate-200 transition hover:border-violet-300/60 hover:text-violet-100"
                       data-cursor-target="true"
                     >
                       <X className="h-4 w-4" />
@@ -369,7 +388,7 @@ function App() {
                               href={activeItem.liveUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-400"
+                              className="cursor-pointer inline-flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-400"
                               data-cursor-target="true"
                             >
                               <ExternalLink className="h-4 w-4" />
@@ -380,7 +399,7 @@ function App() {
                             href={activeItem.githubUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/20"
+                            className="cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/20"
                             data-cursor-target="true"
                           >
                             <Github className="h-4 w-4" />
@@ -398,7 +417,7 @@ function App() {
                           href={activeItem.verifyUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+                          className="cursor-pointer inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
                           data-cursor-target="true"
                         >
                           <ExternalLink className="h-4 w-4" />
@@ -423,7 +442,7 @@ function App() {
               href="https://github.com/OsmanJah"
               target="_blank"
               rel="noreferrer"
-              className="mx-auto mt-6 inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-violet-400"
+              className="cursor-pointer mx-auto mt-6 inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-violet-400"
               data-cursor-target="true"
             >
               <Github className="h-4 w-4" />
@@ -454,7 +473,7 @@ function App() {
                 <button
                   type="button"
                   onClick={() => setActiveDocument(null)}
-                  className="rounded-lg border border-white/20 p-2 text-slate-200 transition hover:border-violet-300/60 hover:text-violet-100"
+                  className="cursor-pointer rounded-lg border border-white/20 p-2 text-slate-200 transition hover:border-violet-300/60 hover:text-violet-100"
                   data-cursor-target="true"
                 >
                   <X className="h-4 w-4" />
@@ -467,7 +486,7 @@ function App() {
                 <a
                   href={activeDocument.source}
                   download
-                  className="inline-flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-400"
+                  className="cursor-pointer inline-flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-400"
                   data-cursor-target="true"
                 >
                   <Download className="h-4 w-4" />
