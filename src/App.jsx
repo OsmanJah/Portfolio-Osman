@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
-import Spline from '@splinetool/react-spline'
 import { AnimatePresence, LayoutGroup, motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion'
 import { Award, Download, ExternalLink, Github, X } from 'lucide-react'
 
 function App() {
   const [activeCard, setActiveCard] = useState(null)
   const [activeDocument, setActiveDocument] = useState(null)
+  const [isCursorInteractive, setIsCursorInteractive] = useState(false)
 
   const mouseX = useMotionValue(-100)
   const mouseY = useMotionValue(-100)
@@ -15,7 +15,7 @@ function App() {
   const cursorOpacity = useMotionValue(0)
 
   const { scrollYProgress } = useScroll()
-  const marqueeX = useTransform(scrollYProgress, [0.1, 0.7], ['6%', '-48%'])
+  const marqueeX = useTransform(scrollYProgress, [0.12, 0.75], ['8%', '-45%'])
 
   useEffect(() => {
     document.documentElement.classList.add('scroll-smooth')
@@ -39,6 +39,34 @@ function App() {
       window.removeEventListener('keydown', onKeyDown)
     }
   }, [])
+
+  useEffect(() => {
+    const onPointerMove = (event) => {
+      const targetElement = event.target instanceof Element ? event.target : null
+
+      mouseX.set(event.clientX)
+      mouseY.set(event.clientY)
+      cursorOpacity.set(1)
+
+      const interactiveTarget = targetElement?.closest('a,button,[data-cursor-target="true"]')
+      const isInteractive = Boolean(interactiveTarget)
+      setIsCursorInteractive(isInteractive)
+      cursorScale.set(isInteractive ? 1.85 : 1)
+    }
+
+    const onPointerLeave = () => {
+      cursorOpacity.set(0)
+      setIsCursorInteractive(false)
+    }
+
+    window.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointerleave', onPointerLeave)
+
+    return () => {
+      window.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('pointerleave', onPointerLeave)
+    }
+  }, [cursorOpacity, cursorScale, mouseX, mouseY])
 
   const projects = useMemo(
     () => [
@@ -95,15 +123,6 @@ function App() {
     [],
   )
 
-  const handlePointerMove = (event) => {
-    mouseX.set(event.clientX)
-    mouseY.set(event.clientY)
-    cursorOpacity.set(1)
-
-    const interactiveTarget = event.target.closest('a,button,[data-cursor-target="true"]')
-    cursorScale.set(interactiveTarget ? 2.35 : 1)
-  }
-
   const openDocument = (title, source, downloadLabel) => {
     setActiveDocument({ title, source, downloadLabel })
   }
@@ -114,24 +133,20 @@ function App() {
       : certifications.find((certification) => certification.id === activeCard?.id)
 
   return (
-    <div
-      className="relative min-h-screen cursor-none overflow-x-clip bg-slate-950 text-slate-100"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={() => cursorOpacity.set(0)}
-    >
-      <div className="fixed left-0 top-0 -z-10 h-screen w-full">
-        <Spline scene="https://prod.spline.design/kU44TVJEWW94Ok5QdtDhioV2/scene.splinecode" />
-      </div>
-
-      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-slate-950/65 via-slate-950/72 to-slate-950/92" />
+    <div className="relative min-h-screen overflow-x-clip bg-slate-950 text-slate-100">
+      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.15),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_50%_100%,rgba(168,85,247,0.14),transparent_45%)]" />
 
       <motion.div
         style={{ x: smoothMouseX, y: smoothMouseY, scale: cursorScale, opacity: cursorOpacity }}
-        className="pointer-events-none fixed left-0 top-0 z-[90] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/80 bg-cyan-300/20 mix-blend-difference shadow-[0_0_28px_rgba(34,211,238,0.65)]"
+        className={`pointer-events-none fixed left-0 top-0 z-[90] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border transition-colors duration-150 ${
+          isCursorInteractive
+            ? 'border-violet-200 bg-violet-300/30 shadow-[0_0_34px_rgba(196,181,253,0.75)]'
+            : 'border-cyan-300/85 bg-cyan-300/25 shadow-[0_0_24px_rgba(34,211,238,0.55)]'
+        }`}
       />
 
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/40 backdrop-blur-2xl">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-2xl">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#home" className="text-2xl font-semibold tracking-tight text-violet-200" data-cursor-target="true">
             Osman Jah
           </a>
@@ -161,62 +176,74 @@ function App() {
       </header>
 
       <main className="relative z-10">
-        <section id="home" className="mx-auto flex min-h-[calc(100vh-73px)] w-full max-w-6xl items-center px-6 py-16 md:py-24">
-          <div className="grid w-full items-center gap-10 rounded-[2.5rem] border border-white/10 bg-slate-900/35 p-7 backdrop-blur-2xl md:grid-cols-12 md:p-10">
-            <div className="space-y-6 md:col-span-7">
-              <p className="inline-flex rounded-full border border-violet-300/30 bg-violet-500/15 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-violet-200">
-                GENERAL VA • OPERATIONS • AI-FLUENT
-              </p>
-              <h1 className="text-4xl font-black leading-[0.96] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                Tech-Fluent Remote Operations, Delivered With Precision.
-              </h1>
-              <p className="max-w-2xl text-lg leading-relaxed text-slate-200/90">
-                I am Osman Jah, a Computer Science graduate helping modern teams execute complex workflows with clarity,
-                accountability, and automation-first thinking.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://github.com/OsmanJah"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
-                  data-cursor-target="true"
-                >
-                  <Github className="h-4 w-4" />
-                  GitHub Profile
-                </a>
-                <button
-                  type="button"
-                  onClick={() => openDocument('Resume / CV', '/Osman_Jah_Resume.pdf', 'Download Resume/CV')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-base font-semibold text-slate-950 transition hover:bg-cyan-300"
-                  data-cursor-target="true"
-                >
-                  <Download className="h-4 w-4" />
-                  Preview Resume/CV
-                </button>
+        <section id="home" className="min-h-screen">
+          <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 gap-8 px-6 py-8 lg:grid-cols-2 lg:gap-10 lg:py-10">
+            <div className="flex items-center justify-center">
+              <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md md:p-10">
+                <p className="inline-flex rounded-full border border-violet-300/30 bg-violet-500/15 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-violet-200">
+                  GENERAL VA • OPERATIONS • AI-FLUENT
+                </p>
+                <h1 className="mt-5 text-4xl font-black leading-[0.96] tracking-tight text-white sm:text-6xl">
+                  Tech-Fluent Remote Operations, Delivered With Precision.
+                </h1>
+                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-200/90">
+                  I am Osman Jah, a Computer Science graduate helping modern teams execute complex workflows with clarity,
+                  accountability, and automation-first thinking.
+                </p>
+
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="relative">
+                    <div className="absolute -inset-2 rounded-full bg-violet-500/35 blur-2xl" />
+                    <img
+                      src="/Osman_Jah_Profile.jpeg"
+                      alt="Osman Jah"
+                      className="relative h-20 w-20 rounded-full border border-white/20 object-cover object-top shadow-[0_0_42px_rgba(139,92,246,0.5)]"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-xl font-semibold text-white">Osman Jah</p>
+                    <p className="text-sm text-slate-300">Remote-Ready General VA • Tech Operations</p>
+                  </div>
+                </div>
+
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a
+                    href="https://github.com/OsmanJah"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-base font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-400/15"
+                    data-cursor-target="true"
+                  >
+                    <Github className="h-4 w-4" />
+                    GitHub Profile
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => openDocument('Resume / CV', '/Osman_Jah_Resume.pdf', 'Download Resume/CV')}
+                    className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-base font-semibold text-slate-950 transition hover:bg-cyan-300"
+                    data-cursor-target="true"
+                  >
+                    <Download className="h-4 w-4" />
+                    Preview Resume/CV
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div className="relative flex justify-center md:col-span-5">
-              <motion.div
-                initial={{ scale: 0.92, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.7, ease: 'easeOut' }}
-                className="relative"
-              >
-                <div className="absolute -inset-5 rounded-full bg-violet-500/35 blur-3xl" />
-                <div className="absolute -inset-2 rounded-full border border-violet-300/40" />
-                <img
-                  src="/Osman_Jah_Profile.jpeg"
-                  alt="Osman Jah"
-                  className="relative h-72 w-72 rounded-full border border-white/20 object-cover object-top shadow-[0_0_80px_rgba(139,92,246,0.45)] md:h-96 md:w-96"
-                />
-              </motion.div>
+            <div className="h-[50vh] min-h-[340px] overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md lg:h-full">
+              <iframe
+                src="https://my.spline.design/cybermannequin-kU44TVJEWW94Ok5QdtDhioV2/"
+                frameBorder="0"
+                width="100%"
+                height="100%"
+                className="w-full h-full pointer-events-auto"
+                title="Interactive 3D Mannequin"
+              ></iframe>
             </div>
           </div>
         </section>
 
-        <section id="about" className="relative mx-auto mt-8 w-full max-w-6xl px-6 pb-8 pt-6">
+        <section id="about" className="relative mx-auto mt-6 w-full max-w-7xl px-6 pb-8 pt-6">
           <motion.p
             style={{ x: marqueeX }}
             className="pointer-events-none absolute left-0 top-0 whitespace-nowrap text-[11vw] font-black uppercase tracking-[0.08em] text-white/6"
@@ -225,7 +252,7 @@ function App() {
           </motion.p>
 
           <div className="relative grid gap-6 md:grid-cols-12">
-            <article className="rounded-3xl border border-white/10 bg-slate-900/40 p-8 backdrop-blur-2xl md:col-span-8">
+            <article className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md md:col-span-8">
               <h2 className="text-3xl font-bold text-white md:text-4xl">About & Skills</h2>
               <p className="mt-4 text-lg leading-relaxed text-slate-200/90">
                 Born in Freetown, Sierra Leone, currently based in Hungary. I hold a{' '}
@@ -257,7 +284,7 @@ function App() {
                 ].map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-sm font-medium text-slate-100 backdrop-blur-md transition hover:border-violet-300/60 hover:bg-violet-500/20"
+                    className="rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-sm font-medium text-slate-100 backdrop-blur-md transition hover:border-violet-300/60 hover:bg-violet-500/20"
                     data-cursor-target="true"
                   >
                     {skill}
@@ -266,7 +293,7 @@ function App() {
               </div>
             </article>
 
-            <article className="rounded-3xl border border-white/10 bg-slate-900/40 p-8 backdrop-blur-2xl md:col-span-4">
+            <article className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md md:col-span-4">
               <h3 className="text-xl font-semibold text-white">Profile Snapshot</h3>
               <div className="mt-4 space-y-2 text-slate-200/90">
                 <p>
@@ -298,7 +325,7 @@ function App() {
         </section>
 
         <LayoutGroup>
-          <section id="work" className="mx-auto mt-4 w-full max-w-6xl px-6 pb-10 pt-6">
+          <section id="work" className="mx-auto mt-4 w-full max-w-7xl px-6 pb-10 pt-6">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Selected Work</h2>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-12">
               {projects.map((project, index) => (
@@ -306,7 +333,7 @@ function App() {
                   key={project.id}
                   layoutId={`project-card-${project.id}`}
                   onClick={() => setActiveCard({ type: 'project', id: project.id })}
-                  className={`group relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/40 p-6 text-left backdrop-blur-2xl transition hover:border-violet-300/55 ${
+                  className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur-md transition hover:border-violet-300/55 ${
                     index === 0 ? 'md:col-span-8 md:min-h-[18rem]' : 'md:col-span-4 md:min-h-[18rem]'
                   }`}
                   data-cursor-target="true"
@@ -323,7 +350,7 @@ function App() {
             </div>
           </section>
 
-          <section id="credentials" className="mx-auto w-full max-w-6xl px-6 pb-12 pt-2">
+          <section id="credentials" className="mx-auto w-full max-w-7xl px-6 pb-12 pt-2">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Certifications & Credentials</h2>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-12">
               {certifications.map((certification, index) => (
@@ -331,8 +358,8 @@ function App() {
                   key={certification.id}
                   layoutId={`cert-card-${certification.id}`}
                   onClick={() => setActiveCard({ type: 'cert', id: certification.id })}
-                  className={`group relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/45 p-6 text-left backdrop-blur-2xl transition hover:border-cyan-300/55 ${
-                    index === 0 ? 'md:col-span-5' : 'md:col-span-3.5 md:col-span-3'
+                  className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur-md transition hover:border-cyan-300/55 ${
+                    index === 0 ? 'md:col-span-5' : 'md:col-span-3'
                   }`}
                   data-cursor-target="true"
                 >
@@ -358,7 +385,7 @@ function App() {
               >
                 <motion.div
                   layoutId={`${activeCard.type === 'project' ? 'project' : 'cert'}-card-${activeItem.id}`}
-                  className="w-full max-w-3xl overflow-hidden rounded-3xl border border-white/15 bg-slate-900/80 backdrop-blur-3xl"
+                  className="w-full max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md"
                   onClick={(event) => event.stopPropagation()}
                 >
                   <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
@@ -435,8 +462,8 @@ function App() {
           </AnimatePresence>
         </LayoutGroup>
 
-        <section id="contact" className="mx-auto w-full max-w-6xl px-6 pb-20 pt-8">
-          <div className="rounded-3xl border border-white/10 bg-slate-900/45 p-8 text-center backdrop-blur-2xl md:p-12">
+        <section id="contact" className="mx-auto w-full max-w-7xl px-6 pb-20 pt-8">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-md md:p-12">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Let’s Work Together</h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-200/90">
               Open to remote General VA opportunities with high-performance teams, including U.S.-focused recruiting and operations organizations.
@@ -468,7 +495,7 @@ function App() {
               initial={{ y: 24, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 24, opacity: 0 }}
-              className="w-full max-w-5xl rounded-3xl border border-white/15 bg-slate-900/85 p-4 backdrop-blur-2xl md:p-6"
+              className="w-full max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-md md:p-6"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="mb-4 flex items-center justify-between gap-4">
