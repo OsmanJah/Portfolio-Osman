@@ -254,16 +254,18 @@ function App() {
                 </button>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {[
+                    'Google Workspace',
+                    'Inbox & Calendar Management',
+                    'AI Tools & Automation',
+                    'WordPress CMS',
+                    'Slack & Zoom',
+                    'Process Documentation',
                     'React.js',
                     'Node.js',
                     'JavaScript',
                     'Python',
-                    'MongoDB',
                     'REST APIs',
                     'Git & GitHub',
-                    'AI Tools & Workflow Automation',
-                    'Problem Solving',
-                    'Technical Communication',
                   ].map((skill) => (
                     <span
                       key={skill}
