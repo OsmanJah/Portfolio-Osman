@@ -31,7 +31,7 @@ This website showcases:
 
 ## Assets in `public/`
 
-- `Osman_Jah_Resume.pdf`
+- `Osman_Jah_CV.pdf`
 - `Osman_Jah_Degree.pdf`
 - `Osman_Jah_Certifications.pdf`
 - `Osman_Jah_GOAL_Recommendation.pdf`

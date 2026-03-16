@@ -169,7 +169,7 @@ function App() {
                   </a>
                   <button
                     type="button"
-                    onClick={() => openDocument('Resume / CV', '/Osman_Jah_Resume.pdf', 'Download Resume/CV')}
+                    onClick={() => openDocument('Resume / CV', '/Osman_Jah_CV.pdf', 'Download Resume/CV')}
                     className="cursor-pointer inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-base font-semibold text-slate-950 transition hover:bg-cyan-300"
                     data-cursor-target="true"
                   >
