@@ -476,7 +476,7 @@ function App() {
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-md md:p-12">
             <h2 className="text-3xl font-bold text-white md:text-4xl">Let’s Work Together</h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-200/90">
-              Open to remote General VA and operations roles with ambitious U.S.-based teams.
+              Open to remote General VA and operations roles with ambitious teams worldwide.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <a
