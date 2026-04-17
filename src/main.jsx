@@ -8,6 +8,3 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
-
-// Testing Vercel auto-deploy pipeline
-// More test to finally confirm it's fully fixed
