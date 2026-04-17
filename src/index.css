@@ -11,6 +11,7 @@
   --accent: #ff8a1f;
   --accent-2: #67f3de;
   --accent-3: #78a7ff;
+  --accent-4: #d66dff;
   --font-display: "Syne", sans-serif;
   --font-body: "Manrope", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
@@ -25,6 +26,7 @@ body {
   background:
     radial-gradient(circle at top left, rgba(255, 138, 31, 0.18), transparent 24%),
     radial-gradient(circle at 86% 14%, rgba(103, 243, 222, 0.14), transparent 22%),
+    radial-gradient(circle at 58% 62%, rgba(214, 109, 255, 0.12), transparent 24%),
     linear-gradient(180deg, #081a2d 0%, #091f34 48%, #071525 100%);
   color: var(--text);
   font-family: var(--font-body);
@@ -48,6 +50,18 @@ h6 {
 
 section[id] {
   scroll-margin-top: 6rem;
+}
+
+a,
+button,
+summary,
+[role="button"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
 }
 
 ::selection {

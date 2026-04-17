@@ -159,7 +159,7 @@ function App() {
   return (
     <div data-motion={motionEnabled ? 'enabled' : 'disabled'} className="relative min-h-screen overflow-x-clip bg-[var(--bg)] text-[var(--text)]">
       <div className="pointer-events-none fixed inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,26,45,0.98),rgba(6,19,33,0.98))]" />
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_12%_14%,rgba(255,138,31,0.24),transparent_18%),radial-gradient(circle_at_84%_16%,rgba(103,243,222,0.18),transparent_20%),radial-gradient(circle_at_70%_72%,rgba(120,167,255,0.16),transparent_24%)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_12%_14%,rgba(255,138,31,0.24),transparent_18%),radial-gradient(circle_at_84%_16%,rgba(103,243,222,0.18),transparent_20%),radial-gradient(circle_at_70%_72%,rgba(120,167,255,0.16),transparent_24%),radial-gradient(circle_at_48%_58%,rgba(214,109,255,0.16),transparent_22%)]" />
       <div className="pointer-events-none fixed left-[-7rem] top-[7rem] -z-10 h-[24rem] w-[24rem] rounded-full bg-[rgba(255,138,31,0.16)] blur-[130px]" />
       <div className="pointer-events-none fixed right-[-8rem] top-[18rem] -z-10 h-[28rem] w-[28rem] rounded-full bg-[rgba(103,243,222,0.12)] blur-[140px]" />
       <div className="pointer-events-none fixed inset-0 -z-10 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:72px_72px]" />
@@ -357,8 +357,8 @@ function App() {
                   Preview Degree
                 </button>
               </div>
-              <div className="mt-8 grid gap-6">
-                <div className="flex flex-wrap gap-3">
+              <div className="mt-8 grid gap-6 xl:grid-cols-[1.08fr_0.92fr] xl:items-stretch">
+                <div className="flex flex-wrap content-start gap-3">
                   {skills.map((skill) => (
                     <span key={skill} className="rounded-full border border-[var(--line)] bg-[rgba(255,255,255,0.08)] px-4 py-2 text-sm font-medium text-[var(--text)] shadow-[0_10px_20px_rgba(0,0,0,0.08)]">
                       {skill}
@@ -366,24 +366,17 @@ function App() {
                   ))}
                 </div>
 
-                <div className="overflow-hidden rounded-[1.8rem] border border-[rgba(255,255,255,0.12)] bg-[linear-gradient(145deg,rgba(17,45,70,0.92),rgba(8,23,37,0.96))] shadow-[0_24px_60px_rgba(0,0,0,0.26)]">
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
-                    <div>
-                      <p className="font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.34em] text-[var(--text-soft)]">3D Visual</p>
-                      <p className="mt-1 text-sm text-[var(--text-muted)]">Bringing back the original energy inside the Toolkit section.</p>
-                    </div>
-                    <span className="rounded-full border border-[rgba(103,243,222,0.22)] bg-[rgba(103,243,222,0.1)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#b9fff5]">
-                      Live
-                    </span>
-                  </div>
-                  <div className="relative h-[19rem] overflow-hidden sm:h-[22rem]">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(255,138,31,0.18),transparent_24%),radial-gradient(circle_at_80%_18%,rgba(103,243,222,0.16),transparent_24%)]" />
-                    <iframe
-                      src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
-                      title="3D Assistant Orb"
-                      className="pointer-events-none h-full w-full scale-[1.06]"
-                    />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(180deg,rgba(8,23,37,0)_0%,rgba(8,23,37,0.78)_100%)]" />
+                <div className="relative min-h-[21rem] overflow-hidden rounded-[2rem] border border-[rgba(150,188,255,0.14)] bg-[linear-gradient(180deg,rgba(17,10,24,0.98),rgba(6,11,18,0.98))] shadow-[0_26px_70px_rgba(0,0,0,0.34)]">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_38%_42%,rgba(214,109,255,0.26),transparent_24%),radial-gradient(circle_at_64%_62%,rgba(120,167,255,0.26),transparent_18%),radial-gradient(circle_at_50%_50%,rgba(255,138,31,0.1),transparent_28%)]" />
+                  <iframe
+                    src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
+                    title="3D Assistant Orb"
+                    className="pointer-events-none absolute inset-0 h-full w-full scale-[1.12] opacity-95"
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(8,11,18,0)_0%,rgba(8,11,18,0.76)_100%)]" />
+                  <div className="pointer-events-none absolute bottom-5 right-5 inline-flex items-center gap-2 rounded-full border border-[rgba(214,109,255,0.28)] bg-[rgba(114,18,124,0.62)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#f5bbff] shadow-[0_10px_22px_rgba(0,0,0,0.28)] backdrop-blur-md">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#f08fff] shadow-[0_0_10px_rgba(240,143,255,0.9)]" />
+                    System: Online
                   </div>
                 </div>
               </div>
