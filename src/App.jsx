@@ -340,47 +340,54 @@ function App() {
               </div>
             </motion.article>
 
-            <motion.article variants={item} className="rounded-[2rem] border border-[var(--line)] bg-[linear-gradient(160deg,rgba(16,39,61,0.82),rgba(10,24,38,0.92))] p-8 backdrop-blur-xl sm:p-10">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.34em] text-[var(--text-soft)]">Toolkit</p>
-                  <h3 className="mt-3 font-[family-name:var(--font-display)] text-3xl leading-[0.96] tracking-[-0.04em] text-[var(--text)] sm:text-4xl">
-                    Operations fluency and hands-on technical skills.
-                  </h3>
+            <div className="grid gap-6 xl:h-full xl:grid-rows-[0.88fr_1.12fr]">
+              <motion.article
+                variants={item}
+                className="relative min-h-[20rem] overflow-hidden rounded-[2rem] border border-[rgba(150,188,255,0.14)] bg-[linear-gradient(180deg,rgba(19,9,26,0.98),rgba(6,11,18,0.98))] shadow-[0_26px_70px_rgba(0,0,0,0.34)] xl:min-h-0"
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_38%_42%,rgba(214,109,255,0.26),transparent_24%),radial-gradient(circle_at_64%_62%,rgba(120,167,255,0.26),transparent_18%),radial-gradient(circle_at_50%_50%,rgba(255,138,31,0.1),transparent_28%)]" />
+                <iframe
+                  src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
+                  title="3D Assistant Orb"
+                  className="pointer-events-none absolute inset-0 h-full w-full scale-[1.14] opacity-95"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(8,11,18,0)_0%,rgba(8,11,18,0.78)_100%)]" />
+                <div className="pointer-events-none absolute bottom-5 right-5 inline-flex items-center gap-2 rounded-full border border-[rgba(214,109,255,0.28)] bg-[rgba(114,18,124,0.62)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#f5bbff] shadow-[0_10px_22px_rgba(0,0,0,0.28)] backdrop-blur-md">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#f08fff] shadow-[0_0_10px_rgba(240,143,255,0.9)]" />
+                  System: Online
                 </div>
-                <button
-                  type="button"
-                  onClick={() => openDocument('Bachelor Degree', '/Osman_Jah_Degree.pdf', 'Download Degree PDF')}
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white/5 px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--accent)]"
-                >
-                  <Eye className="h-4 w-4" />
-                  Preview Degree
-                </button>
-              </div>
-              <div className="mt-8 grid gap-6 xl:grid-cols-[1.08fr_0.92fr] xl:items-stretch">
-                <div className="flex flex-wrap content-start gap-3">
+              </motion.article>
+
+              <motion.article
+                variants={item}
+                className="rounded-[2rem] border border-[var(--line)] bg-[linear-gradient(160deg,rgba(16,39,61,0.82),rgba(10,24,38,0.92))] p-8 backdrop-blur-xl sm:p-10 xl:h-full"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <p className="font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.34em] text-[var(--text-soft)]">Toolkit</p>
+                    <h3 className="mt-3 font-[family-name:var(--font-display)] text-3xl leading-[0.96] tracking-[-0.04em] text-[var(--text)] sm:text-4xl">
+                      Operations fluency and hands-on technical skills.
+                    </h3>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => openDocument('Bachelor Degree', '/Osman_Jah_Degree.pdf', 'Download Degree PDF')}
+                    className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-white/5 px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--accent)]"
+                  >
+                    <Eye className="h-4 w-4" />
+                    Preview Degree
+                  </button>
+                </div>
+
+                <div className="mt-8 flex flex-wrap content-start gap-3">
                   {skills.map((skill) => (
                     <span key={skill} className="rounded-full border border-[var(--line)] bg-[rgba(255,255,255,0.08)] px-4 py-2 text-sm font-medium text-[var(--text)] shadow-[0_10px_20px_rgba(0,0,0,0.08)]">
                       {skill}
                     </span>
                   ))}
                 </div>
-
-                <div className="relative min-h-[21rem] overflow-hidden rounded-[2rem] border border-[rgba(150,188,255,0.14)] bg-[linear-gradient(180deg,rgba(17,10,24,0.98),rgba(6,11,18,0.98))] shadow-[0_26px_70px_rgba(0,0,0,0.34)]">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_38%_42%,rgba(214,109,255,0.26),transparent_24%),radial-gradient(circle_at_64%_62%,rgba(120,167,255,0.26),transparent_18%),radial-gradient(circle_at_50%_50%,rgba(255,138,31,0.1),transparent_28%)]" />
-                  <iframe
-                    src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
-                    title="3D Assistant Orb"
-                    className="pointer-events-none absolute inset-0 h-full w-full scale-[1.12] opacity-95"
-                  />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(8,11,18,0)_0%,rgba(8,11,18,0.76)_100%)]" />
-                  <div className="pointer-events-none absolute bottom-5 right-5 inline-flex items-center gap-2 rounded-full border border-[rgba(214,109,255,0.28)] bg-[rgba(114,18,124,0.62)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#f5bbff] shadow-[0_10px_22px_rgba(0,0,0,0.28)] backdrop-blur-md">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#f08fff] shadow-[0_0_10px_rgba(240,143,255,0.9)]" />
-                    System: Online
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+              </motion.article>
+            </div>
           </div>
         </motion.section>
 
