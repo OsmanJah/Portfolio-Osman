@@ -29,7 +29,7 @@ const projects = [
     stack: ['React.js', 'Node.js', 'Express', 'MongoDB', 'Socket.IO', 'Stripe'],
     liveUrl: 'https://doctor-appointment-frontend-one.vercel.app',
     githubUrl: 'https://github.com/OsmanJah/doctor-appointment',
-    accent: 'from-[#ff7a18]/30 via-[#ffd166]/14 to-[#6ee7d8]/16',
+    accent: 'from-[#ff8a1f]/42 via-[#ffe27a]/20 to-[#67f3de]/24',
   },
   {
     id: 'toycatcher',
@@ -40,7 +40,7 @@ const projects = [
       'Developed with Python and Pygame. Includes difficulty levels, combo scoring, sound effects, power-ups, and a SQLite leaderboard.',
     stack: ['Python', 'Pygame', 'SQLite'],
     githubUrl: 'https://github.com/OsmanJah/TeamPlasas',
-    accent: 'from-[#6ee7d8]/24 via-[#3cbec9]/12 to-[#ff7a18]/18',
+    accent: 'from-[#67f3de]/34 via-[#70a8ff]/18 to-[#ff8a1f]/24',
   },
 ]
 
@@ -158,17 +158,20 @@ function App() {
 
   return (
     <div data-motion={motionEnabled ? 'enabled' : 'disabled'} className="relative min-h-screen overflow-x-clip bg-[var(--bg)] text-[var(--text)]">
-      <div className="pointer-events-none fixed inset-0 -z-20 bg-[radial-gradient(circle_at_top_left,rgba(255,122,24,0.18),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(110,231,216,0.16),transparent_28%),radial-gradient(circle_at_50%_100%,rgba(255,209,102,0.12),transparent_34%)]" />
-      <div className="pointer-events-none fixed inset-0 -z-10 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:72px_72px]" />
+      <div className="pointer-events-none fixed inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,26,45,0.98),rgba(6,19,33,0.98))]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_12%_14%,rgba(255,138,31,0.24),transparent_18%),radial-gradient(circle_at_84%_16%,rgba(103,243,222,0.18),transparent_20%),radial-gradient(circle_at_70%_72%,rgba(120,167,255,0.16),transparent_24%)]" />
+      <div className="pointer-events-none fixed left-[-7rem] top-[7rem] -z-10 h-[24rem] w-[24rem] rounded-full bg-[rgba(255,138,31,0.16)] blur-[130px]" />
+      <div className="pointer-events-none fixed right-[-8rem] top-[18rem] -z-10 h-[28rem] w-[28rem] rounded-full bg-[rgba(103,243,222,0.12)] blur-[140px]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:72px_72px]" />
       <motion.div
         style={{ scaleX: progress }}
         className="fixed left-0 right-0 top-0 z-[70] h-1 origin-left bg-gradient-to-r from-[var(--accent)] via-[#ffd166] to-[var(--accent-2)]"
       />
 
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(8,17,26,0.72)] backdrop-blur-2xl">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(8,20,34,0.68)] backdrop-blur-2xl">
         <nav className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-4">
           <a href="#home" className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--text)]">
-            <span className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/5 font-[family-name:var(--font-display)] text-base tracking-normal">
+            <span className="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-[linear-gradient(145deg,rgba(255,138,31,0.16),rgba(120,167,255,0.14))] font-[family-name:var(--font-display)] text-base tracking-normal shadow-[0_0_24px_rgba(120,167,255,0.08)]">
               OJ
             </span>
             <span className="hidden sm:block">Osman Jah</span>
@@ -202,9 +205,9 @@ function App() {
           <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
             <motion.article
               variants={item}
-              className="relative overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--surface)] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:p-10 xl:p-12"
+              className="relative overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--surface)] p-8 shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:p-10 xl:p-12"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,122,24,0.14),transparent_38%),linear-gradient(140deg,rgba(255,255,255,0.06),transparent_60%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,138,31,0.2),transparent_36%),radial-gradient(circle_at_92%_10%,rgba(103,243,222,0.14),transparent_24%),linear-gradient(135deg,rgba(255,255,255,0.06),transparent_62%)]" />
               <div className="relative">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full border border-[rgba(255,122,24,0.28)] bg-[rgba(255,122,24,0.12)] px-4 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[#ffd4b0]">
@@ -272,17 +275,11 @@ function App() {
                 className="relative min-h-[27rem] overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--surface-strong)] shadow-[0_24px_80px_rgba(0,0,0,0.36)]"
               >
                 <img src="/Osman_Jah_Profile.jpeg" alt="Osman Jah" className="h-full w-full object-cover object-top" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,14,21,0)_24%,rgba(6,14,21,0.86)_100%)]" />
-                <div className="absolute left-4 top-5 rounded-full border border-white/15 bg-[rgba(8,17,26,0.78)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#dfe6ee] backdrop-blur-md">
-                  Detail-driven
-                </div>
-                <div className="absolute right-4 top-20 rounded-full border border-[rgba(110,231,216,0.24)] bg-[rgba(9,26,31,0.82)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#bdf8f0] backdrop-blur-md">
-                  Remote-ready
-                </div>
-                <div className="absolute bottom-6 left-6 right-6 rounded-[1.6rem] border border-white/10 bg-[rgba(8,17,26,0.72)] p-5 backdrop-blur-xl">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_18%,rgba(255,181,72,0.22),transparent_22%),linear-gradient(180deg,rgba(4,15,26,0)_18%,rgba(5,14,24,0.84)_100%)]" />
+                <div className="absolute bottom-6 left-6 right-6 rounded-[1.6rem] border border-white/10 bg-[rgba(8,20,34,0.68)] p-5 backdrop-blur-xl">
                   <p className="font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.34em] text-[var(--text-soft)]">Profile</p>
                   <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl leading-[0.94] tracking-[-0.04em] text-[var(--text)]">
-                    Tech-fluent support with a builder&apos;s eye for detail.
+                    Tech-fluent support with polished delivery and operational calm.
                   </h2>
                 </div>
               </motion.article>
@@ -343,7 +340,7 @@ function App() {
               </div>
             </motion.article>
 
-            <motion.article variants={item} className="rounded-[2rem] border border-[var(--line)] bg-white/5 p-8 backdrop-blur-xl sm:p-10">
+            <motion.article variants={item} className="rounded-[2rem] border border-[var(--line)] bg-[linear-gradient(160deg,rgba(16,39,61,0.82),rgba(10,24,38,0.92))] p-8 backdrop-blur-xl sm:p-10">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.34em] text-[var(--text-soft)]">Toolkit</p>
@@ -360,12 +357,35 @@ function App() {
                   Preview Degree
                 </button>
               </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {skills.map((skill) => (
-                  <span key={skill} className="rounded-full border border-[var(--line)] bg-[rgba(255,255,255,0.06)] px-4 py-2 text-sm font-medium text-[var(--text)]">
-                    {skill}
-                  </span>
-                ))}
+              <div className="mt-8 grid gap-6">
+                <div className="flex flex-wrap gap-3">
+                  {skills.map((skill) => (
+                    <span key={skill} className="rounded-full border border-[var(--line)] bg-[rgba(255,255,255,0.08)] px-4 py-2 text-sm font-medium text-[var(--text)] shadow-[0_10px_20px_rgba(0,0,0,0.08)]">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="overflow-hidden rounded-[1.8rem] border border-[rgba(255,255,255,0.12)] bg-[linear-gradient(145deg,rgba(17,45,70,0.92),rgba(8,23,37,0.96))] shadow-[0_24px_60px_rgba(0,0,0,0.26)]">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4">
+                    <div>
+                      <p className="font-[family-name:var(--font-mono)] text-[0.68rem] uppercase tracking-[0.34em] text-[var(--text-soft)]">3D Visual</p>
+                      <p className="mt-1 text-sm text-[var(--text-muted)]">Bringing back the original energy inside the Toolkit section.</p>
+                    </div>
+                    <span className="rounded-full border border-[rgba(103,243,222,0.22)] bg-[rgba(103,243,222,0.1)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#b9fff5]">
+                      Live
+                    </span>
+                  </div>
+                  <div className="relative h-[19rem] overflow-hidden sm:h-[22rem]">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(255,138,31,0.18),transparent_24%),radial-gradient(circle_at_80%_18%,rgba(103,243,222,0.16),transparent_24%)]" />
+                    <iframe
+                      src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
+                      title="3D Assistant Orb"
+                      className="pointer-events-none h-full w-full scale-[1.06]"
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(180deg,rgba(8,23,37,0)_0%,rgba(8,23,37,0.78)_100%)]" />
+                  </div>
+                </div>
               </div>
             </motion.article>
           </div>

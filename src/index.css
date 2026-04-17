@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #07131d;
-  --surface: rgba(10, 24, 35, 0.72);
-  --surface-strong: #0b1b28;
-  --text: #f6efe6;
-  --text-muted: rgba(233, 236, 240, 0.78);
-  --text-soft: rgba(197, 206, 214, 0.68);
-  --line: rgba(255, 255, 255, 0.12);
-  --accent: #ff7a18;
-  --accent-2: #6ee7d8;
+  --bg: #081a2d;
+  --surface: rgba(14, 36, 56, 0.76);
+  --surface-strong: rgba(10, 27, 43, 0.94);
+  --text: #fff5ea;
+  --text-muted: rgba(237, 242, 247, 0.86);
+  --text-soft: rgba(205, 217, 229, 0.76);
+  --line: rgba(145, 208, 255, 0.16);
+  --accent: #ff8a1f;
+  --accent-2: #67f3de;
+  --accent-3: #78a7ff;
   --font-display: "Syne", sans-serif;
   --font-body: "Manrope", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
@@ -21,7 +22,10 @@ html {
 
 body {
   min-height: 100vh;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(255, 138, 31, 0.18), transparent 24%),
+    radial-gradient(circle at 86% 14%, rgba(103, 243, 222, 0.14), transparent 22%),
+    linear-gradient(180deg, #081a2d 0%, #091f34 48%, #071525 100%);
   color: var(--text);
   font-family: var(--font-body);
   text-rendering: optimizeLegibility;
@@ -47,13 +51,13 @@ section[id] {
 }
 
 ::selection {
-  background: rgba(255, 122, 24, 0.35);
+  background: rgba(255, 138, 31, 0.45);
   color: #111111;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 122, 24, 0.65) rgba(255, 255, 255, 0.08);
+  scrollbar-color: rgba(255, 138, 31, 0.8) rgba(255, 255, 255, 0.08);
 }
 
 *::-webkit-scrollbar {
@@ -65,6 +69,6 @@ section[id] {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(255, 122, 24, 0.9), rgba(110, 231, 216, 0.8));
+  background: linear-gradient(180deg, rgba(255, 138, 31, 0.95), rgba(103, 243, 222, 0.88));
   border-radius: 999px;
 }
