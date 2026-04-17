@@ -355,7 +355,7 @@ function App() {
                   className="pointer-events-none absolute inset-0 h-full w-full scale-[1.14] opacity-95"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(8,11,18,0)_0%,rgba(8,11,18,0.78)_100%)]" />
-                <div className="pointer-events-none absolute bottom-5 right-5 inline-flex items-center gap-2 rounded-full border border-[rgba(214,109,255,0.28)] bg-[rgba(114,18,124,0.62)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#f5bbff] shadow-[0_10px_22px_rgba(0,0,0,0.28)] backdrop-blur-md">
+                <div className="pointer-events-none absolute bottom-0 right-0 inline-flex items-center gap-2 rounded-tl-full border border-[rgba(214,109,255,0.28)] bg-[rgba(114,18,124,0.72)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#f5bbff] shadow-[0_10px_22px_rgba(0,0,0,0.28)] backdrop-blur-md">
                   <span className="h-2.5 w-2.5 rounded-full bg-[#f08fff] shadow-[0_0_10px_rgba(240,143,255,0.9)]" />
                   System: Online
                 </div>
@@ -483,7 +483,6 @@ function App() {
                     >
                       <div>
                         <p className="text-base font-semibold text-[var(--text)]">{title}</p>
-                        <p className="mt-1 text-sm text-[var(--text-muted)]">Preview directly inside the portfolio.</p>
                       </div>
                       <span className="rounded-full border border-white/10 bg-white/5 p-3 transition group-hover:border-[var(--accent)]">
                         <Eye className="h-4 w-4 text-[var(--text)]" />
