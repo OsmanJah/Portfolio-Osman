@@ -317,8 +317,8 @@ function App() {
           viewport={{ once: true, amount: 0.2 }}
           className="mx-auto w-full max-w-7xl px-6 pb-20"
         >
-          <div className="grid gap-6 xl:grid-cols-[0.88fr_1.12fr]">
-            <motion.article variants={item} className="rounded-[2rem] border border-[var(--line)] bg-[var(--surface)] p-8 backdrop-blur-xl sm:p-10">
+          <div className="grid gap-6 xl:grid-cols-[0.88fr_1.12fr] xl:items-stretch">
+            <motion.article variants={item} className="rounded-[2rem] border border-[var(--line)] bg-[var(--surface)] p-8 backdrop-blur-xl sm:p-10 xl:h-full">
               <p className="font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.34em] text-[var(--text-soft)]">About and Skills</p>
               <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-4xl leading-[0.94] tracking-[-0.04em] text-[var(--text)] sm:text-5xl">
                 Built for dependable support, sharper systems, and thoughtful execution.
@@ -340,12 +340,15 @@ function App() {
               </div>
             </motion.article>
 
-            <div className="grid gap-6 xl:h-full xl:grid-rows-[0.88fr_1.12fr]">
+            <div className="grid gap-6 xl:h-full xl:grid-rows-[minmax(22rem,0.92fr)_1.08fr]">
               <motion.article
                 variants={item}
-                className="relative min-h-[20rem] overflow-hidden rounded-[2rem] border border-[rgba(150,188,255,0.14)] bg-[linear-gradient(180deg,rgba(19,9,26,0.98),rgba(6,11,18,0.98))] shadow-[0_26px_70px_rgba(0,0,0,0.34)] xl:min-h-0"
+                className="relative h-[22rem] overflow-hidden rounded-[2rem] border border-[rgba(150,188,255,0.14)] bg-[linear-gradient(180deg,rgba(19,9,26,0.98),rgba(6,11,18,0.98))] shadow-[0_26px_70px_rgba(0,0,0,0.34)] xl:h-full"
               >
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_38%_42%,rgba(214,109,255,0.26),transparent_24%),radial-gradient(circle_at_64%_62%,rgba(120,167,255,0.26),transparent_18%),radial-gradient(circle_at_50%_50%,rgba(255,138,31,0.1),transparent_28%)]" />
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <div className="h-44 w-44 rounded-full bg-[radial-gradient(circle_at_28%_24%,rgba(255,255,255,0.68),rgba(231,136,255,0.56)_26%,rgba(149,119,255,0.44)_62%,rgba(48,29,88,0.2)_100%)] shadow-[0_0_80px_rgba(214,109,255,0.44)]" />
+                </div>
                 <iframe
                   src="https://my.spline.design/voiceaiassistant-5SyrentSPOqOLkryIBR5IZXu/"
                   title="3D Assistant Orb"
